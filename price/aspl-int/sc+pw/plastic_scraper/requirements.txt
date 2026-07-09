@@ -1,0 +1,4 @@
+scrapy
+parsel
+openpyxl
+itemadapter
