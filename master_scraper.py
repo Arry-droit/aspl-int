@@ -108,6 +108,13 @@ def main():
                     with open(combined_json_path, 'w', encoding='utf-8') as f:
                         json.dump(combined_data, f, indent=4, ensure_ascii=False)
                     print(f"Successfully updated {combined_json_path} with {len(combined_data)} total items.")
+                    
+                    # Copy to frontend public folder
+                    frontend_json_path = os.path.join(base_dir, "frontend", "public", "combined_data.json")
+                    if os.path.exists(os.path.dirname(frontend_json_path)):
+                        import shutil
+                        shutil.copy2(combined_json_path, frontend_json_path)
+                        print(f"Copied updated combined_data.json to frontend public folder.")
                 except Exception as e:
                     print(f"Error writing combined JSON: {e}")
                 

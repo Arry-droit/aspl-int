@@ -58,6 +58,8 @@ class NewsSpider(scrapy.Spider):
                 href = a.attrib.get('href', '')
                 text = " ".join([t.strip() for t in a.css('::text').getall() if t.strip()]).lower()
                 if 'reliance' in text and href.lower().endswith('.xlsx'):
+                    if 'sez' in text or 'sez' in href.lower():
+                        continue
                     if 'pp' in text:
                         pp_excel_url = response.urljoin(href)
                     elif 'pe' in text or 'hdpe' in text or 'ldpe' in text or 'lldpe' in text:
